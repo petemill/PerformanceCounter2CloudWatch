@@ -75,7 +75,7 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
                     counterUpdatedSince = counterUpdateInterval;
                 }
 
-
+                Console.Clear();
                 var data = new List<MetricDatum>();
 
                 foreach (var list in lists)
@@ -83,7 +83,7 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
                     foreach (var item in list.List)
                     {
                         var countValue = item.GetCount();
-                        try
+                        if (countValue.HasValue)
                         {
 
                             //get metric value and wrap for CloudWatch
@@ -97,9 +97,9 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
                                 )
                                 .WithTimestamp(DateTime.Now)
                                 .WithUnit(item.Unit)
-                                .WithValue(countValue));
+                                .WithValue(countValue.Value));
                         }
-                        catch { errorCount++; }
+                        else { errorCount++; }
                         WriteMessage("Counter:{0}  Value:{1}", item.Name, countValue);
                     }
                 }

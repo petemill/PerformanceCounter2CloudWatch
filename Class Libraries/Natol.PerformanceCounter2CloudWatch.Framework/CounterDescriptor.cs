@@ -18,6 +18,6 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
         public string Unit { get; set; }
         public string MetricName { get; set; }
         public IDictionary<string,string> Dimensions { get; set; }
-        public abstract double GetCount();
+        public abstract double? GetCount();
     }
 }
