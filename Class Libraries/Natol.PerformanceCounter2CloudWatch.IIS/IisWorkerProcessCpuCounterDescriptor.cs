@@ -12,9 +12,16 @@ namespace Natol.PerformanceCounter2CloudWatch.IIS
         public int ProcessId { get; set; }
         public PerformanceCounter SystemCounter { get; set; }
 
-        public override double GetCount()
+        public override double? GetCount()
         {
-            return Convert.ToDouble(SystemCounter.NextValue() / Environment.ProcessorCount);
+            try
+            {
+                return Convert.ToDouble(SystemCounter.NextValue() / Environment.ProcessorCount);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
