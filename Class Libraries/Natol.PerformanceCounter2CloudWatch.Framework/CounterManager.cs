@@ -95,7 +95,7 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
                                     new Dimension { Name = "InstanceID", Value = instanceId }
                                     })
                                 )
-                                .WithTimestamp(DateTime.Now)
+                                .WithTimestamp(DateTime.UtcNow)
                                 .WithUnit(item.Unit)
                                 .WithValue(countValue.Value));
                         }
@@ -122,13 +122,17 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
         private void SendMetrics(IList<MetricDatum> data, string dataNamesspace)
         {
             if (data == null || data.Count == 0 || String.IsNullOrWhiteSpace(dataNamesspace))
+            {
+                WriteMessage("Nothing to send");
                 return;
+            }
+                
 
             var appSettings = ConfigurationManager.AppSettings;
 
             WriteMessage(String.Join(",", data.Select(d => d.Value.ToString()).ToArray()));
             //setup cloudwatch service
-            AmazonCloudWatch client = Amazon.AWSClientFactory.CreateAmazonCloudWatchClient(appSettings["AWS-CloudWatch-AccessKey"], appSettings["AWS-CloudWatch-SecretKey"], new AmazonCloudWatchConfig { ServiceURL = appSettings["AWS-CloudWatch-Namespace"] });
+            AmazonCloudWatch client = Amazon.AWSClientFactory.CreateAmazonCloudWatchClient(appSettings["AWS-CloudWatch-AccessKey"], appSettings["AWS-CloudWatch-SecretKey"], new AmazonCloudWatchConfig { ServiceURL = appSettings["AWS-CloudWatch-ServiceUrl"] });
 
             client.PutMetricData(new PutMetricDataRequest()
                 .WithMetricData(data)
