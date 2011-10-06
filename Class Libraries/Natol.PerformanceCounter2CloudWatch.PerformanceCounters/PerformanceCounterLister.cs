@@ -14,7 +14,12 @@ namespace Natol.PerformanceCounter2CloudWatch.PerformanceCounters
             //no need to update, since we're hardcoded (& eventually configuration-vased)
             if (counterItems.Count == 0)
             {
+                //create reference to PerformanceCounter object
                 var pc = new PerformanceCounter("Processor", "% Processor Time", "_Total", true);
+                //read value to start counter
+                pc.NextValue();
+
+                //setup descriptor object for central framework
                 var result = new PerformanceCounterDescriptor
                 {
                     Name = "CPUUtilization",

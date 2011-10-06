@@ -49,12 +49,22 @@ namespace Natol.PerformanceCounter2CloudWatch.IIS
 
         private CounterDescriptor CreateDescriptor(WorkerProcess w3wp)
         {
+            //obtain reference to PerformanceCounter object
             var pc = new PerformanceCounter("Process", "% Processor Time", PerformanceCounterProcessHelper.GetPerformanceCounterProcessName(w3wp.ProcessId), true);
-            var result = new IisWorkerProcessCpuCounterDescriptor { Name = w3wp.AppPoolName, SystemCounter = pc, ProcessId = w3wp.ProcessId };
-            result.Dimensions.Add("SiteName", w3wp.AppPoolName);
-            result.Unit = "Percent";
-            result.MetricName = "CPUUtilization";
+            //read value to start counter
+            pc.NextValue();
 
+            //setup descriptor object for central framework
+            var result = new IisWorkerProcessCpuCounterDescriptor 
+            {
+                Name = w3wp.AppPoolName, 
+                SystemCounter = pc, 
+                ProcessId = w3wp.ProcessId,
+                Unit = "Percent",
+                MetricName = "CPUUtilization"
+            };
+            result.Dimensions.Add("SiteName", w3wp.AppPoolName);
+            
             return result;
         }
     }
