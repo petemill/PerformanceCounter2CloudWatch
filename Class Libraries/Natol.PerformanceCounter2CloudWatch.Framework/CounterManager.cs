@@ -64,6 +64,7 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
             // Once a second, capture data and send to CloudWatch
             while (!_stop)
             {
+                DateTime start = DateTime.Now;
                 //update counter objects if required to
                 if (counterUpdatedSince <= 0)
                 {
@@ -113,8 +114,13 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
 
                 counterUpdatedSince--;
 
-                Thread.Sleep(1000 * 1);
+                //,easure time since this iteration of the loop began and subtract this TimeSpan from the sleep time
+                var length = DateTime.Now - start;
 
+                //TODO: read sleep time from configuration
+                //Default is 1 minute. Whilst we could send every second, for many metrics this could get quite expensive
+                //  based on CLoudWatch pricing strategy per 1,000 PUT requests.
+                Thread.Sleep((1000 * 60)-Convert.ToInt32(length.TotalMilliseconds));
             }
 
         }
