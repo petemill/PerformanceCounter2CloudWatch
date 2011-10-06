@@ -2,21 +2,18 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2ACC87FF-F15D-4710-8359-AB2F82DEF140}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{785FB819-932C-4D28-8EBF-992D6E48454A}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Natol.PerformanceCounter2CloudWatch.PC2CWConsole</RootNamespace>
-    <AssemblyName>Natol.PerformanceCounter2CloudWatch.PC2CWConsole</AssemblyName>
+    <RootNamespace>Natol.PerformanceCounter2CloudWatch.PerformanceCounters</RootNamespace>
+    <AssemblyName>Natol.PerformanceCounter2CloudWatch.PerformanceCounters</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,8 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,12 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\..\External References\AutoFac\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Autofac.Configuration">
-      <HintPath>..\..\External References\AutoFac\Autofac.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,25 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="PerformanceCounterDescriptor.cs" />
+    <Compile Include="PerformanceCounterLister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Class Libraries\Natol.PerformanceCounter2CloudWatch.Framework\Natol.PerformanceCounter2CloudWatch.Framework.csproj">
+    <ProjectReference Include="..\Natol.PerformanceCounter2CloudWatch.Framework\Natol.PerformanceCounter2CloudWatch.Framework.csproj">
       <Project>{B2244C1E-65F9-4E4A-AC94-0CD483C0C95C}</Project>
       <Name>Natol.PerformanceCounter2CloudWatch.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Class Libraries\Natol.PerformanceCounter2CloudWatch.IIS\Natol.PerformanceCounter2CloudWatch.IIS.csproj">
-      <Project>{D51A279A-4889-4E19-AFF0-E3952E8616A2}</Project>
-      <Name>Natol.PerformanceCounter2CloudWatch.IIS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Class Libraries\Natol.PerformanceCounter2CloudWatch.PerformanceCounters\Natol.PerformanceCounter2CloudWatch.PerformanceCounters.csproj">
-      <Project>{785FB819-932C-4D28-8EBF-992D6E48454A}</Project>
-      <Name>Natol.PerformanceCounter2CloudWatch.PerformanceCounters</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

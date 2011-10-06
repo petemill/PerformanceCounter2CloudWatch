@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natol.PerformanceCounter2Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natol.PerformanceCounter2CloudWatch.PC2CWConsole", "..\..\Console Applications\Natol.PerformanceCounter2CloudWatch.PC2CWConsole\Natol.PerformanceCounter2CloudWatch.PC2CWConsole.csproj", "{2ACC87FF-F15D-4710-8359-AB2F82DEF140}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natol.PerformanceCounter2CloudWatch.PerformanceCounters", "..\..\Class Libraries\Natol.PerformanceCounter2CloudWatch.PerformanceCounters\Natol.PerformanceCounter2CloudWatch.PerformanceCounters.csproj", "{785FB819-932C-4D28-8EBF-992D6E48454A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{2ACC87FF-F15D-4710-8359-AB2F82DEF140}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2ACC87FF-F15D-4710-8359-AB2F82DEF140}.Release|x86.ActiveCfg = Release|x86
 		{2ACC87FF-F15D-4710-8359-AB2F82DEF140}.Release|x86.Build.0 = Release|x86
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{785FB819-932C-4D28-8EBF-992D6E48454A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
