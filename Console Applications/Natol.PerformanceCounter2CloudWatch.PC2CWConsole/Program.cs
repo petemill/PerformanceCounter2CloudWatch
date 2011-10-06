@@ -5,6 +5,7 @@ using System.Text;
 using Autofac;
 using Natol.PerformanceCounter2CloudWatch.IIS;
 using Natol.PerformanceCounter2CloudWatch.Framework;
+using Natol.PerformanceCounter2CloudWatch.PerformanceCounters;
 
 namespace Natol.PerformanceCounter2CloudWatch.PC2CWConsole
 {
@@ -16,6 +17,7 @@ namespace Natol.PerformanceCounter2CloudWatch.PC2CWConsole
             var builder = new ContainerBuilder();
             Console.WriteLine("Setting up dependencies");
             builder.Register<IisServerWorkerProcessCpuLister>(c => new IisServerWorkerProcessCpuLister()).As<IPerformanceCounterLister>();
+            //builder.Register<PerformanceCounterLister>(c => new PerformanceCounterLister()).As<IPerformanceCounterLister>();
 
             //setup manager
             var manager = new CounterManager(builder);
