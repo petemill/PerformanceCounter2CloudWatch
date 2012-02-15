@@ -10,6 +10,14 @@ namespace Natol.PerformanceCounter2CloudWatch.IIS
 {
     public class IisServerWorkerProcessCpuLister : IPerformanceCounterLister
     {
+        /// <summary>
+        /// This instance requires update as the process Ids of worker processes can change often
+        /// </summary>
+        public bool RequiresUpdate
+        {
+            get { return true; }
+        }
+
         public IList<CounterDescriptor> UpdateCounterItems(IList<CounterDescriptor> counterItems)
         {
             ServerManager iisManager = new ServerManager();
@@ -67,5 +75,6 @@ namespace Natol.PerformanceCounter2CloudWatch.IIS
             
             return result;
         }
+
     }
 }

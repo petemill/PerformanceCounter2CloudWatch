@@ -8,5 +8,6 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
     public interface IPerformanceCounterLister
     {
         IList<CounterDescriptor> UpdateCounterItems(IList<CounterDescriptor> counterItems);
+        bool RequiresUpdate { get; }
     }
 }

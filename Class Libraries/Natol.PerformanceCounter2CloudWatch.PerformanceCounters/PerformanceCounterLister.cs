@@ -9,9 +9,17 @@ namespace Natol.PerformanceCounter2CloudWatch.PerformanceCounters
 {
     public class PerformanceCounterLister : IPerformanceCounterLister
     {
+        /// <summary>
+        /// This instance does not requires update as the list of PerformanceCounter references is obtained through hard-coding
+        /// </summary>
+        public bool RequiresUpdate
+        {
+            get { return false; }
+        }
+
         public IList<CounterDescriptor> UpdateCounterItems(IList<CounterDescriptor> counterItems)
         {
-            //no need to update, since we're hardcoded (& eventually configuration-vased)
+            //no need to update, since we're hardcoded (& eventually configuration-based)
             if (counterItems.Count == 0)
             {
                 //create reference to PerformanceCounter object
