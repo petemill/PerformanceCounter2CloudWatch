@@ -23,7 +23,8 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
 
         public void WriteMessage(string format, params object[] args)
         {
-            WriteToLog(String.Format(format, args));
+            if (WriteToLog!=null)
+                WriteToLog(String.Format(format, args));
         }
 
 
