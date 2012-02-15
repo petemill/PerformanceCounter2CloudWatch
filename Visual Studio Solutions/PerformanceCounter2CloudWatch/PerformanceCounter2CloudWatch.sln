@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natol.PerformanceCounter2Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natol.PerformanceCounter2CloudWatch.PerformanceCounters", "..\..\Class Libraries\Natol.PerformanceCounter2CloudWatch.PerformanceCounters\Natol.PerformanceCounter2CloudWatch.PerformanceCounters.csproj", "{785FB819-932C-4D28-8EBF-992D6E48454A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natol.PerformanceCounter2CloudWatch.PC2CWService", "..\..\Windows Services\Natol.PerformanceCounter2CloudWatch.PC2CWService\Natol.PerformanceCounter2CloudWatch.PC2CWService.csproj", "{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,7 @@ Global
 		{D51A279A-4889-4E19-AFF0-E3952E8616A2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D51A279A-4889-4E19-AFF0-E3952E8616A2}.Release|x86.ActiveCfg = Release|Any CPU
 		{2ACC87FF-F15D-4710-8359-AB2F82DEF140}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2ACC87FF-F15D-4710-8359-AB2F82DEF140}.Debug|Any CPU.Build.0 = Debug|x86
 		{2ACC87FF-F15D-4710-8359-AB2F82DEF140}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{2ACC87FF-F15D-4710-8359-AB2F82DEF140}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{2ACC87FF-F15D-4710-8359-AB2F82DEF140}.Debug|x86.ActiveCfg = Debug|x86
@@ -59,6 +62,17 @@ Global
 		{785FB819-932C-4D28-8EBF-992D6E48454A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{785FB819-932C-4D28-8EBF-992D6E48454A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{785FB819-932C-4D28-8EBF-992D6E48454A}.Release|x86.ActiveCfg = Release|Any CPU
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Debug|Any CPU.Build.0 = Debug|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Debug|x86.ActiveCfg = Debug|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Debug|x86.Build.0 = Debug|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Release|Any CPU.ActiveCfg = Release|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Release|x86.ActiveCfg = Release|x86
+		{B1BE0FE5-5EB1-460F-8930-7AD809B4AFCD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
