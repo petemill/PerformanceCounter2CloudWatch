@@ -9,6 +9,7 @@ using System.Text;
 using Natol.PerformanceCounter2CloudWatch.Framework;
 using Natol.PerformanceCounter2CloudWatch.IIS;
 using Autofac;
+using System.Threading;
 
 namespace Natol.PerformanceCounter2CloudWatch.PC2CWService
 {
@@ -21,29 +22,51 @@ namespace Natol.PerformanceCounter2CloudWatch.PC2CWService
 
         //service-wide reference to counter-manager
         CounterManager manager;
+        Thread serviceThread=null;
 
         protected override void OnStart(string[] args)
         {
-            try
-            {
-                //setup dependencies
-                var builder = new ContainerBuilder();
-                Console.WriteLine("Setting up dependencies");
-
-                //todo: configuration based provider setup
-                builder.Register<IisServerWorkerProcessCpuLister>(c => new IisServerWorkerProcessCpuLister()).As<IPerformanceCounterLister>();
+            serviceThread = new Thread(new ThreadStart(() =>
+                {
+                    try
+                    {
 
 
-                //setup manager
-                manager = new CounterManager(builder);
-                //todo: lof ro dilw bt setting a function on manager.WriteToLog
-                manager.Start();
+                        //set up logging
+                        string eventLogSource = "PC2CW Service";
+                        if (!EventLog.SourceExists(eventLogSource))
+                            EventLog.CreateEventSource(eventLogSource, "Application");
+
+                        //setup dependencies
+                        var builder = new ContainerBuilder();
+                        EventLog.WriteEntry(eventLogSource, "Setting up dependencies", EventLogEntryType.Information);
+
+                        //todo: configuration based provider setup
+                        builder.Register<IisServerWorkerProcessCpuLister>(c => new IisServerWorkerProcessCpuLister()).As<IPerformanceCounterLister>();
+
+                        //setup manager
+                        manager = new CounterManager(builder);
+                        manager.WriteToLog = x =>
+                        {
+                            string message = String.Format("{0:yyyyMMdd-HHmmss} {1}", DateTime.Now, x);
+                            EventLog.WriteEntry(eventLogSource, message, EventLogEntryType.Information);
+                        };
+                        manager.Start();
+                    }
+                    catch (Exception ex)
+                    {
+                        //todo: log eception stopping
+                        string eventLogSource = "PC2CW Service";
+                        if (!EventLog.SourceExists(eventLogSource))
+                            EventLog.CreateEventSource(eventLogSource, "Application");
+
+                        EventLog.WriteEntry(eventLogSource, "Error in main service thread: " + ex.Message + Environment.NewLine + ex.StackTrace, EventLogEntryType.Error);
+                    }
+
+                }));
+
+                serviceThread.Start();
             }
-            catch 
-            {
-                //todo: log exception setting up
-            }
-        }
 
         protected override void OnStop()
         {
@@ -51,10 +74,16 @@ namespace Natol.PerformanceCounter2CloudWatch.PC2CWService
             {
                 if (manager != null)
                     manager.Stop();
+                serviceThread.Abort();
             }
-            catch
+            catch (Exception ex)
             {
                 //todo: log eception stopping
+                string eventLogSource = "PC2CW Service";
+                if (!EventLog.SourceExists(eventLogSource))
+                    EventLog.CreateEventSource(eventLogSource, "Application");
+
+                EventLog.WriteEntry(eventLogSource, "Error stopping: " + ex.Message, EventLogEntryType.Error);
             }
         }
     }
