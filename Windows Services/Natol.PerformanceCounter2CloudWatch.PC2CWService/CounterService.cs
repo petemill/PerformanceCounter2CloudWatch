@@ -48,10 +48,16 @@ namespace Natol.PerformanceCounter2CloudWatch.PC2CWService
                         manager = new CounterManager(builder);
                         manager.WriteToLog = x =>
                         {
+                            //do not log every single status report, as this means we're storing all the stats in the event log!
+                            //  this should only be used in debug
+#if DEBUG
                             string message = String.Format("{0:yyyyMMdd-HHmmss} {1}", DateTime.Now, x);
                             EventLog.WriteEntry(eventLogSource, message, EventLogEntryType.Information);
+#endif
                         };
+                        EventLog.WriteEntry(eventLogSource, "Starting CounterManager...", EventLogEntryType.Information);
                         manager.Start();
+                        EventLog.WriteEntry(eventLogSource, "CounterManager started", EventLogEntryType.Information);
                     }
                     catch (Exception ex)
                     {
@@ -73,8 +79,14 @@ namespace Natol.PerformanceCounter2CloudWatch.PC2CWService
             try
             {
                 if (manager != null)
+                {
+                    EventLog.WriteEntry(eventLogSource, "Stopping CounterManager...", EventLogEntryType.Information);
                     manager.Stop();
+                    EventLog.WriteEntry(eventLogSource, "CounterManager stopped.", EventLogEntryType.Information);
+                }
+                EventLog.WriteEntry(eventLogSource, "Aborting service thread...", EventLogEntryType.Information);
                 serviceThread.Abort();
+                EventLog.WriteEntry(eventLogSource, "Service thread aborted (last action in OnStop() )", EventLogEntryType.Information);
             }
             catch (Exception ex)
             {
