@@ -77,7 +77,7 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
                     counterUpdatedSince = counterUpdateInterval;
                 }
 
-                Console.Clear();
+                //Console.Clear();s
                 var data = new List<MetricDatum>();
 
                 foreach (var list in lists)
