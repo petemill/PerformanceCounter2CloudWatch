@@ -50,16 +50,20 @@
     <Compile Include="IisServerWorkerProcessCpuLister.cs" />
     <Compile Include="PerformanceCounterProcessHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Traffic\IisServerSiteTrafficCountLister.cs" />
+    <Compile Include="Traffic\TrafficPerformanceCounterDescriptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Natol.PerformanceCounter2CloudWatch.Framework\Natol.PerformanceCounter2CloudWatch.Framework.csproj">
       <Project>{B2244C1E-65F9-4E4A-AC94-0CD483C0C95C}</Project>
       <Name>Natol.PerformanceCounter2CloudWatch.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Natol.PerformanceCounter2CloudWatch.PerformanceCounters\Natol.PerformanceCounter2CloudWatch.PerformanceCounters.csproj">
+      <Project>{785FB819-932C-4D28-8EBF-992D6E48454A}</Project>
+      <Name>Natol.PerformanceCounter2CloudWatch.PerformanceCounters</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Traffic\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
