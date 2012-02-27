@@ -10,6 +10,7 @@ using Natol.PerformanceCounter2CloudWatch.Framework;
 using Natol.PerformanceCounter2CloudWatch.IIS;
 using Autofac;
 using System.Threading;
+using Natol.PerformanceCounter2CloudWatch.IIS.Traffic;
 
 namespace Natol.PerformanceCounter2CloudWatch.PC2CWService
 {
@@ -43,6 +44,7 @@ namespace Natol.PerformanceCounter2CloudWatch.PC2CWService
 
                         //todo: configuration based provider setup
                         builder.Register<IisServerWorkerProcessCpuLister>(c => new IisServerWorkerProcessCpuLister()).As<IPerformanceCounterLister>();
+                        builder.Register<IisServerSiteTrafficCountLister>(c => new IisServerSiteTrafficCountLister()).As<IPerformanceCounterLister>();
 
                         //setup manager
                         manager = new CounterManager(builder);
@@ -78,6 +80,10 @@ namespace Natol.PerformanceCounter2CloudWatch.PC2CWService
         {
             try
             {
+                string eventLogSource = "PC2CW Service";
+                if (!EventLog.SourceExists(eventLogSource))
+                    EventLog.CreateEventSource(eventLogSource, "Application");
+
                 if (manager != null)
                 {
                     EventLog.WriteEntry(eventLogSource, "Stopping CounterManager...", EventLogEntryType.Information);
