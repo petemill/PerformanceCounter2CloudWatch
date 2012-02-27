@@ -28,7 +28,7 @@ namespace Natol.PerformanceCounter2CloudWatch.PerformanceCounters
                 pc.NextValue();
 
                 //setup descriptor object for central framework
-                var result = new PerformanceCounterDescriptor
+                var result = new CpuPerformanceCounterDescriptor
                 {
                     Name = "CPUUtilization",
                     SystemCounter = pc,

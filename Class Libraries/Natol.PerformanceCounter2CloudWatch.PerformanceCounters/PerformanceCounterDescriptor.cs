@@ -11,11 +11,11 @@ namespace Natol.PerformanceCounter2CloudWatch.PerformanceCounters
     {
         public PerformanceCounter SystemCounter { get; set; }
 
-        public override double? GetCount()
+        public  override double? GetCount()
         {
             try
             {
-                return Convert.ToDouble(SystemCounter.NextValue() / Environment.ProcessorCount);
+                return Convert.ToDouble(SystemCounter.NextValue());
             }
             catch
             {

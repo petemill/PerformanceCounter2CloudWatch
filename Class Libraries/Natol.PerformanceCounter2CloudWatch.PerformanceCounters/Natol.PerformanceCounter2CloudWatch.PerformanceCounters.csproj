@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CpuPerformanceCounterDescriptor.cs" />
     <Compile Include="PerformanceCounterDescriptor.cs" />
     <Compile Include="PerformanceCounterLister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
