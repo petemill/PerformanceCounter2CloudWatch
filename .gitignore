@@ -33,3 +33,6 @@ UpgradeLog*.XML
 
 !*.refresh
 ![Bb]in/*.refresh
+
+#ignore config files - add these files by force if wishing to commit sample configuration
+*.config
