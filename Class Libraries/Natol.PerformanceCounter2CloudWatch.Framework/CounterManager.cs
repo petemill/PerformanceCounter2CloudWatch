@@ -141,10 +141,16 @@ namespace Natol.PerformanceCounter2CloudWatch.Framework
             //setup cloudwatch service
             AmazonCloudWatch client = Amazon.AWSClientFactory.CreateAmazonCloudWatchClient(appSettings["AWS-CloudWatch-AccessKey"], appSettings["AWS-CloudWatch-SecretKey"], new AmazonCloudWatchConfig { ServiceURL = appSettings["AWS-CloudWatch-ServiceUrl"] });
 
-            client.PutMetricData(new PutMetricDataRequest()
-                .WithMetricData(data)
-                .WithNamespace(dataNamesspace));
+            //cloud-watch only lets us send maximum of 20 pieces of metric data per request,
+            //  so split in to groups of 20
+            var dataGrp = from i in Enumerable.Range(0, data.Count())
+                           group data[i] by i / 20;
 
+            dataGrp.ToList().ForEach(dataSet =>
+            client.PutMetricData(new PutMetricDataRequest()
+                .WithMetricData(dataSet.AsEnumerable())
+                .WithNamespace(dataNamesspace))
+                );
         }
 
 
