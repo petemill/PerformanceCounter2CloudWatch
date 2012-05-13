@@ -59,7 +59,7 @@ namespace Natol.PerformanceCounter2CloudWatch.IIS.Traffic
                 Name = "Total",
                 SystemCounter = pc,
                 Unit = "Count/Second",
-                MetricName = "Total Method Requests"
+                MetricName = "Method Requests"
             };
 
             pcd.Dimensions.Add("SiteName", "Total");
@@ -77,7 +77,7 @@ namespace Natol.PerformanceCounter2CloudWatch.IIS.Traffic
                 Name=iisSite.Name,
                 SystemCounter=pc,
                 Unit = "Count/Second",
-                MetricName="Total Method Requests"
+                MetricName="Method Requests"
             };
 
             pcd.Dimensions.Add("SiteName",iisSite.Name);
